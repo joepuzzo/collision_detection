@@ -1,0 +1,19 @@
+{
+  "name": "collision_detection",
+  "version": "1.0.0",
+  "description": "Final AI project",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": {
+    "name": "Joe Puzzo",
+    "email": "jgpuzzo@metrocast.net",
+    "url": "http://joepuzzo.github.io"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.4.1",
+    "split": "^1.0.0"
+  }
+}
