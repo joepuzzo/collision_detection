@@ -11,7 +11,7 @@ describe("CollisionMessages", function() {
 
         // Define anything you need to happen before each test here 
         beforeEach( function() {
-            console.log( "EXAMPLE!");
+            //console.log( "EXAMPLE!");
         });
 
         it("should eqal the test message", function(done) {

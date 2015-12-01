@@ -15,7 +15,7 @@ describe("Resolve", function() {
 
       it("should create valid resolution ", function(done) {
         Resolver.resolve( file, function( resolution ) { 
-            console.log(resolution);
+            //console.log(resolution);
             expect(resolution.originalPlans.length).to.equal(4);
             //expect(resolution.resolutePlan.length).toEqual(4);
             expect(resolution.nodes.length).to.equal(4);

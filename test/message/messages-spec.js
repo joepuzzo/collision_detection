@@ -4,7 +4,7 @@ var expect   = require('chai').expect,
 
 describe("Message", function() {
       
-  describe("#hia", function() { 
+  describe("HIA", function() { 
 
         var hia;
             

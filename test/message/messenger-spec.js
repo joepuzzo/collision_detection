@@ -8,8 +8,8 @@ describe("Messenger", function() {
   describe("mail()", function() { 
 
         // Create sender and reciver
-        var sender = new Messenger( 8081 );
-        var reciever = new Messenger( 8082 );
+        var sender = new Messenger( );
+        var reciever = new Messenger( );
 
         // Create a hia messag 
         var hia = new Messages.HIA(2,3,4);
@@ -18,10 +18,11 @@ describe("Messenger", function() {
         // Stuff the hia into the evelope
         envelope.stuff( hia );
             
-        it("Sender should send test evelope and reciever should recieve it", function(done) {
+        it("Sender should send evelope and reciever should recieve it", function(done) {
             
             reciever.on( "hia", function( msg ) { 
-                console.log( msg );
+                //console.log( JSON.stringify( msg ) );
+                expect( JSON.stringify( hia ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' ); 
                 done(); 
             });
 

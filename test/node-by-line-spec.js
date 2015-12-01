@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 
 describe("Parser", function() {
       
-  describe("#parse()", function() { 
+  describe("parse()", function() { 
 
         var Parser = require('../lib/node-by-line.js');
         var fs = require('fs');

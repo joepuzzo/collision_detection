@@ -13,7 +13,7 @@ function sleep(milliseconds) {
 
 describe("FakeGPS", function() {
 
-  describe("#getLocation", function() { 
+  describe("getLocation()", function() { 
 
     var Parser = require('../lib/node-by-line.js'),
         FakeGPS = require('../lib/fake-gps.js');
@@ -35,7 +35,7 @@ describe("FakeGPS", function() {
             var gps = new FakeGPS( plan );
             // Get the location every second for about 60 seconds
             for( i = 0; i < 60; i++) { 
-                console.log( gps.getLocation() );
+                console.log("\t%s", JSON.stringify( gps.getLocation() ) );
                 sleep( 20 );
             }
             done();
