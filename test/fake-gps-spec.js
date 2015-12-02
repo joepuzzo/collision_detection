@@ -26,6 +26,7 @@ describe("FakeGPS", function() {
     });
 
     it("should get a location between the first two trajetories", function(done) {
+        this.timeout(14000); 
         Parser.parse( file, function( plans ) {
             // Make sure we parsed correctly 
             expect(plans.length).to.equal(1);
