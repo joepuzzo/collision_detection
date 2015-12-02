@@ -16,7 +16,7 @@ describe("Messenger", function() {
             
         it("Sender should send evelope and reciever should recieve it", function(done) {
             
-            reciever.on( "hia", function( msg, from ) { 
+            reciever.once( "hia", function( msg, from ) { 
                 //console.log( JSON.stringify( msg ) );
                 expect( JSON.stringify( hia ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' ); 
                 done(); 
