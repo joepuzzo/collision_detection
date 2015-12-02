@@ -36,7 +36,7 @@ describe("FakeGPS", function() {
             // Get the location every second for about 60 seconds
             for( i = 0; i < 60; i++) { 
                 console.log("\t%s", JSON.stringify( gps.getLocation() ) );
-                sleep( 20 );
+                sleep( 200 );
             }
             done();
         });
