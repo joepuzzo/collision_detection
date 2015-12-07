@@ -4,7 +4,7 @@ var expect   = require('chai').expect,
 
 describe("CollisionMessages", function() {
       
-  describe("BABE", function() { 
+  /*describe("BABE", function() { 
 
         // Define anything you need for the tests here
         var babe = new CollisionMessages.BABE(10,6,10);
@@ -39,7 +39,7 @@ describe("CollisionMessages", function() {
 
         });
 
-    });
+    });*/
 
     /* YOUR TEST GOES HERE
     describe("MESSAGENAME", function() { 
