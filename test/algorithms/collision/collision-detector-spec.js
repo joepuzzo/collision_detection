@@ -1,6 +1,7 @@
 // Require an assersion library
 var expect   = require('chai').expect,
-    Detector = require('../../../lib/algorithms/collision/collision-detector.js');
+    Detector = require('../../../lib/algorithms/collision/collision-detector.js'), 
+    Planner   = require('../../../lib/planner.js'); // Plans and Trajectories
 
 describe("CollisionDetector", function() {
       
@@ -70,8 +71,83 @@ describe("CollisionDetector", function() {
             expect( collision.isect2.lon ).to.equal( line2.end.lon );
             done(); 
         });
+    });
+
+    describe("timeCheck", function() { 
+
+        var detector;
+        var seg1, seg2, seg3, seg4, line1, line2; 
+        var collision;
+
+        // Define anything you need for the tests here
+        before( function() { 
+            detector = new Detector();
+            seg1  =  { start: { lat: 10, lon: 10, alt: 50, time: 0 } , end : { lat: 272, lon: 164, alt: 50, time: 60 } }; 
+            seg2  =  { start: { lat: 390, lon: 10, alt: 50, time: 0  } , end: { lat: 178, lon: 191, alt: 50, time: 90 } };
+        });
+
+        // Define anything you need to happen before each test here 
+        beforeEach( function() {
+            collision = { isect1: {}, isect2: {} };
+        });
+
+        it("should return true", function(done) {
+            expect( detector.positionCheck( seg1, seg2, collision ) ).to.equal( true ); 
+            expect( detector.timeCheck( seg1, seg2, collision ) ).to.equal( true ); 
+            expect( collision.timediff ).to.equal( 9.587180666007804 ); 
+            done(); 
+        });
+
+        it("should return false", function(done) {
+            seg1.start.time = 100;
+            seg1.end.time = 160;
+            expect( detector.positionCheck( seg1, seg2, collision ) ).to.equal( true ); 
+            expect( detector.timeCheck( seg1, seg2, collision ) ).to.equal( false ); 
+            //expect( collision.timediff ).to.equal( ); 
+            done(); 
+        });
 
 
     });
+
+
+    describe("checkCollision", function() { 
+
+        var detector;
+        var trajA1, trajA2, trajB1, trajB2, plan1, plan2; 
+        var collision;
+
+        // Define anything you need for the tests here
+        before( function() { 
+            detector = new Detector();
+            trajA1 = { lat: 10,  lon: 10,  alt: 50, time: 0 };
+            trajA2 = { lat: 272, lon: 164, alt: 50, time: 60 }; 
+            trajB1 = { lat: 390, lon: 10,  alt: 50, time: 0  };
+            trajB2 = { lat: 178, lon: 191, alt: 50, time: 90 };
+            plan1 = Planner.makePlan( [ trajA1, trajA2 ] );
+            plan2 = Planner.makePlan( [ trajB1, trajB2 ] );
+        });
+
+        // Define anything you need to happen before each test here 
+        beforeEach( function() {
+            collision = { isect1: {}, isect2: {} };
+        });
+
+        it("should return true", function(done) {
+            expect( detector.checkCollision( plan1, plan2 ).length ).to.equal( 1 ); 
+            done(); 
+        });
+
+        it("should return false", function(done) {
+            trajA1.time = 100;
+            trajA2.time = 160;
+            expect( detector.checkCollision( plan1, plan2 ).length ).to.equal( 0 ); 
+            done(); 
+        });
+
+
+    });
+
+
 });
 
