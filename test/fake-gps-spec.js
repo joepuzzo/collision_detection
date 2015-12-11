@@ -22,11 +22,12 @@ describe("FakeGPS", function() {
 
     beforeEach( function() {
         // Specify before logic here
-        file = fs.createReadStream("test/sample_input/tiny1.movements");
     });
 
-    it("should get a location between the first two trajetories", function(done) {
-        this.timeout(14000); 
+    
+    it("should return the only trajectory in the plan", function(done) {
+        this.timeout(12000); 
+        file = fs.createReadStream("test/sample_input/single_trajectory.movements");
         Parser.parse( file, function( plans ) {
             // Make sure we parsed correctly 
             expect(plans.length).to.equal(1);
@@ -35,9 +36,48 @@ describe("FakeGPS", function() {
             // Create a new fake gps
             var gps = new FakeGPS( plan );
             // Get the location every second for about 60 seconds
-            for( i = 0; i < 60; i++) { 
+            for( i = 0; i < 10; i++) { 
                 console.log("\t%s", JSON.stringify( gps.getLocation() ) );
-                sleep( 200 );
+                sleep( 1000 );
+            }
+            done();
+        });
+    });
+
+    it("should return trajectory one for 5 seconds then trajectory 2 for the rest", function(done) {
+        this.timeout(12000); 
+        file = fs.createReadStream("test/sample_input/double_trajectory.movements");
+        Parser.parse( file, function( plans ) {
+            // Make sure we parsed correctly 
+            expect(plans.length).to.equal(1);
+            // Get the plan out
+            var plan = plans[0];
+            // Create a new fake gps
+            var gps = new FakeGPS( plan );
+            // Get the location every second for about 60 seconds
+            for( i = 0; i < 10; i++) { 
+                console.log("\t%s", JSON.stringify( gps.getLocation() ) );
+                sleep( 1000 );
+            }
+            done();
+        });
+    });
+
+
+    it("should get a location between the first two trajetories", function(done) {
+        this.timeout(24000); 
+        file = fs.createReadStream("test/sample_input/tiny1.movements");
+        Parser.parse( file, function( plans ) {
+            // Make sure we parsed correctly 
+            expect(plans.length).to.equal(1);
+            // Get the plan out
+            var plan = plans[0];
+            // Create a new fake gps
+            var gps = new FakeGPS( plan );
+            // Get the location every second for about 60 seconds
+            for( i = 0; i < 22; i++) { 
+                console.log("\t%s", JSON.stringify( gps.getLocation() ) );
+                sleep( 1000 );
             }
             done();
         });

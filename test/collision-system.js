@@ -42,7 +42,7 @@ describe("CollisionSystem", function() {
 
         it("NodeA should recieve a RollAssignment from NodeB", function(done) {
 
-            this.timeout(40000);
+            this.timeout(4000);
             nodeA.collisionSystem.messenger.once( "RollAssignment", function( msg, from ) {
                 expect( from.id ).to.equal( "B" );
                 done();
