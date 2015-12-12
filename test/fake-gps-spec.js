@@ -110,6 +110,32 @@ describe("FakeGPS", function() {
         });
     });
 
+    it("should pause for '5' seconds and should have a speed up of times 2", function(done) {
+        this.timeout(30000); 
+        file = fs.createReadStream("test/sample_input/tiny1.movements");
+        Parser.parse( file, function( plans ) {
+            // Make sure we parsed correctly 
+            expect(plans.length).to.equal(1);
+            // Get the plan out
+            var plan = plans[0];
+            // Create a new fake gps
+            var gps = new FakeGPS( plan, 3 );
+            // Get the location every second for about 60 seconds
+            for( i = 0; i < 22; i++) { 
+                // If we have iterated 5 times pause the gps
+                if( i === 5 ) { 
+                    gps.pause();
+                }
+                // When we have itterated 5 more times unpause the gps
+                if( i === 10 ) { 
+                    gps.unpause(); 
+                }
+                console.log("\t%s", JSON.stringify( gps.getLocation() ) );
+                sleep( 1000 / 3 );
+            }
+            done();
+        });
+    });
 
   });
 });
