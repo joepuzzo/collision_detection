@@ -8,7 +8,7 @@ describe("CollisionSystem", function() {
       
   var Parser = require('../lib/node-by-line.js');
   var fs = require('fs');
-  var file = fs.createReadStream("test/sample_input/sample_4n.movements");
+  var file = fs.createReadStream("test/sample_input/sample_2n.movements");
   var plans;
   Parser.parse( file, function( pls ) {
      // We are done parsing so run the tests
@@ -22,10 +22,10 @@ describe("CollisionSystem", function() {
         before( function() {
 	     
             nodeA = new DataNode( { id: "A",
-                                    gps: new FakeGPS( plans[2] )
+                                    gps: new FakeGPS( plans[0] )
                                   });
             nodeB = new DataNode( { id: "B",
-                                    gps: new FakeGPS( plans[3] )
+                                    gps: new FakeGPS( plans[1] )
                                   });
         });
 
@@ -42,7 +42,7 @@ describe("CollisionSystem", function() {
 
         it("NodeA should recieve a RollAssignment from NodeB", function(done) {
 
-            this.timeout(4000);
+            this.timeout(4000000);
             nodeA.collisionSystem.messenger.once( "RollAssignment", function( msg, from ) {
                 expect( from.id ).to.equal( "B" );
                 done();
