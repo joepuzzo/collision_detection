@@ -119,7 +119,7 @@ describe("FakeGPS", function() {
             // Get the plan out
             var plan = plans[0];
             // Create a new fake gps
-            var gps = new FakeGPS( plan, 2 );
+            var gps = new FakeGPS( plan, 3 );
             // Get the location every second for about 60 seconds
             for( i = 0; i < 22; i++) { 
                 // If we have iterated 5 times pause the gps
