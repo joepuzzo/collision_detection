@@ -10,11 +10,11 @@ describe("Resolve", function() {
 
       beforeEach( function() {
         // Specify before logic here
-        file = fs.createReadStream("test/sample_input/sample_2ntiny.movements");
+        file = fs.createReadStream("test/sample_input/sample_6n.movements");
       });
 
       it("should create valid resolution ", function(done) {
-        this.timeout(200000); 
+        this.timeout(300000); 
         Resolver.resolve( file, 3, function( resolution ) { 
             //console.log(resolution);
             expect(resolution.originalPlans.length).to.equal(2);
