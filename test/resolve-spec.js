@@ -10,7 +10,7 @@ describe("Resolve", function() {
 
       beforeEach( function() {
         // Specify before logic here
-        file = fs.createReadStream("test/sample_input/sample_2ntiny.movements");
+        file = fs.createReadStream("test/sample_input/sample_6n.movements");
       });
 
       it("should create valid resolution ", function(done) {
