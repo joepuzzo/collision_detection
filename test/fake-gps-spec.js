@@ -84,7 +84,7 @@ describe("FakeGPS", function() {
     });
 
     it("should pause for 5 seconds, i.e return the same location for 5 seconds then continue on", function(done) {
-        this.timeout(30000); 
+        this.timeout(32000); 
         file = fs.createReadStream("test/sample_input/tiny1.movements");
         Parser.parse( file, function( plans ) {
             // Make sure we parsed correctly 
@@ -94,7 +94,7 @@ describe("FakeGPS", function() {
             // Create a new fake gps
             var gps = new FakeGPS( plan );
             // Get the location every second for about 60 seconds
-            for( i = 0; i < 22; i++) { 
+            for( i = 0; i < 30; i++) { 
                 // If we have iterated 5 times pause the gps
                 if( i === 5 ) { 
                     gps.pause();
@@ -106,6 +106,7 @@ describe("FakeGPS", function() {
                 console.log("\t%s", JSON.stringify( gps.getLocation() ) );
                 sleep( 1000 );
             }
+            console.log( "\t", gps.newPlan.toBonString() );
             done();
         });
     });
