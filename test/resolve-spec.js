@@ -10,15 +10,19 @@ describe("Resolve", function() {
 
       beforeEach( function() {
         // Specify before logic here
-        file = fs.createReadStream("test/sample_input/sample_4n.movements");
+        file = fs.createReadStream("test/sample_input/sample_2ntiny.movements");
       });
 
       it("should create valid resolution ", function(done) {
+        this.timeout(130000); 
         Resolver.resolve( file, function( resolution ) { 
             //console.log(resolution);
-            expect(resolution.originalPlans.length).to.equal(4);
-            //expect(resolution.resolutePlan.length).toEqual(4);
-            expect(resolution.nodes.length).to.equal(4);
+            expect(resolution.originalPlans.length).to.equal(2);
+            expect(resolution.resolutePlan.length).toEqual(2);
+            expect(resolution.nodes.length).to.equal(2);
+            for( p of resolution.resolutePlan ) {
+                console.log("\t", p.toBonString() );
+            }
             done();
       });
 
