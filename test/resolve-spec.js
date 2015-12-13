@@ -14,13 +14,13 @@ describe("Resolve", function() {
       });
 
       it("should create valid resolution ", function(done) {
-        this.timeout(130000); 
+        this.timeout(200000); 
         Resolver.resolve( file, function( resolution ) { 
             //console.log(resolution);
             expect(resolution.originalPlans.length).to.equal(2);
-            expect(resolution.resolutePlan.length).toEqual(2);
+            expect(resolution.resolutePlans.length).to.equal(2);
             expect(resolution.nodes.length).to.equal(2);
-            for( p of resolution.resolutePlan ) {
+            for( p of resolution.resolutePlans ) {
                 console.log("\t", p.toBonString() );
             }
             done();
