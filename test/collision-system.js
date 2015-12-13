@@ -8,7 +8,7 @@ describe("CollisionSystem", function() {
       
   var Parser = require('../lib/node-by-line.js');
   var fs = require('fs');
-  var file = fs.createReadStream("test/sample_input/sample_10n.movements");
+  var file = fs.createReadStream("test/sample_input/sample_2ntiny.movements");
   var plans;
   Parser.parse( file, function( pls ) {
      // We are done parsing so run the tests
@@ -25,7 +25,7 @@ describe("CollisionSystem", function() {
                                     gps: new FakeGPS( plans[0] )
                                   });
             nodeB = new DataNode( { id: "B",
-                                    gps: new FakeGPS( plans[5] )
+                                    gps: new FakeGPS( plans[1] )
                                   });
         });
 
