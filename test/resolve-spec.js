@@ -15,7 +15,7 @@ describe("Resolve", function() {
 
       it("should create valid resolution ", function(done) {
         this.timeout(200000); 
-        Resolver.resolve( file, 1, function( resolution ) { 
+        Resolver.resolve( file, 3, function( resolution ) { 
             //console.log(resolution);
             expect(resolution.originalPlans.length).to.equal(2);
             expect(resolution.resolutePlans.length).to.equal(2);
