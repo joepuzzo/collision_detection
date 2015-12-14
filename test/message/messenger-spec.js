@@ -10,6 +10,7 @@ describe("Messenger", function() {
         // Create sender and reciver
         var sender = new Messenger( "A" );
         var reciever = new Messenger( "B" );
+        var notreciever = new Messenger( "C" );
 
         // Create a hia messag 
         var hia = new Messages.HIA(2,3,4);
@@ -24,6 +25,22 @@ describe("Messenger", function() {
 
             sender.sendLocal( [hia] );
         });
+
+
+        it("A should send evelope and B should revieve it", function(done) {
+
+            reciever.once( "hia", function( msg, from ) {
+                expect( JSON.stringify( hia ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
+		done();
+            });
+		
+	    notreciever.once( "hia", function( msg, from ) {
+		console.log("THIS SHOULD NOT HAPPEN!!!");
+            });
+		
+            sender.sendLocal( [hia], {id: "B"} );
+        });
+
 
         after( function() { 
             sender.close();
