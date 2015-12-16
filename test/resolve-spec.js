@@ -10,8 +10,8 @@ describe("Resolve", function() {
 
       beforeEach( function() {
         // Specify before logic here
-        file = fs.createReadStream("test/sample_input/sample_6n.movements");
-        //file = fs.createReadStream("test/sample_input/sample_10n.movements");
+        //file = fs.createReadStream("test/sample_input/sample_6n.movements");
+        file = fs.createReadStream("test/sample_input/sample_10n.movements");
         //file = fs.createReadStream("test/sample_input/sample_2ntiny.movements");
         //file = fs.createReadStream("test/sample_input/sample_2n_2.movements");
       });

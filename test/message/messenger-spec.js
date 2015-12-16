@@ -31,11 +31,11 @@ describe("Messenger", function() {
 
             reciever.once( "hia", function( msg, from ) {
                 expect( JSON.stringify( hia ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
-		done();
+		        done();
             });
 		
-	    notreciever.once( "hia", function( msg, from ) {
-		console.log("THIS SHOULD NOT HAPPEN!!!");
+	        notreciever.once( "hia", function( msg, from ) {
+		        console.log("THIS SHOULD NOT HAPPEN!!!");
             });
 		
             sender.sendLocal( [hia], {id: "B"} );
