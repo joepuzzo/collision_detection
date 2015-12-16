@@ -7,7 +7,7 @@ VISEXT=".visplot"
 
 i=$1
 FNAME=$FNAME$i
-./bm -f "$FNAME" RandomWalk -x 1000 -y 1000 -n $i -d 600 -s 600
+./bm -f "$FNAME" RandomWalk -x 1000 -y 1000 -n $i -d 600 -t 100
 #cp test3.movements ../../collision_detection/test/sample_input/
 gunzip $FNAME$BMEXT
 GRAPHSTRING="splot "
