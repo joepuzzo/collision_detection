@@ -12,7 +12,7 @@ FNAME=$FNAME$i
 gunzip $FNAME$BMEXT
 GRAPHSTRING="splot "
 d=0
-let till=i-1
+let till=i
 
 while [ $d -lt $till ]
 do
