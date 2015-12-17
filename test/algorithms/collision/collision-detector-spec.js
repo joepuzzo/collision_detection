@@ -94,7 +94,7 @@ describe("CollisionDetector", function() {
         it("should return true", function(done) {
             expect( detector.positionCheck( seg1, seg2, collision ) ).to.equal( true ); 
             expect( detector.timeCheck( seg1, seg2, collision ) ).to.equal( true ); 
-            expect( collision.timediff ).to.equal( 9.587180666007804 ); 
+            expect( collision.timediff ).to.equal( 14.237542150618161 ); 
             done(); 
         });
 

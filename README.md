@@ -16,4 +16,24 @@
     - `node_modules, all the dependencies are here.
     - `test, any unit tests that are written will go here. typically named after the file they test in the format filename-spec.js. 
 
+# Running the resolver
+* The resover is a command line tool that will accept a BonnMotion file and run through a simulation
+* In order to run the reslover type the following in the main directory of this project
 
+    `node resolver.js [path2file] [--speed|-s] speed [--verbose|-v]`
+* The speed and verbose flags are optional. Default speed is 1 ( I would suggest running it with 3 ) this just makes the simulation go quicker.
+* Verbose will log out the distances between nodes as the simulation runs
+* The final output of this resolver will be a new bon motion file. > this to a file without the verbose flag or copy the results to a file.
+
+# Running the validator
+* The validator is a command line tool that is used to evaluate a BonnMotion file. 
+* In order to run the validator type the following in the main directory of this project
+
+    `node lib/algorithms/collision/collision-validator.js [path2file] [--verbose|-v]`
+* The verbose flag will give you more output. 
+
+# BonnMotion Files
+* Cool! You now know how to run the tools but you don't have any files :(. Don't fret! There are a bunch of example files located here:
+
+    `test/sample_input/`
+* Run the resolver with `sample_6n.movements` it has a few collisions and 6 nodes. Then go ahead and validate the results with the validator!

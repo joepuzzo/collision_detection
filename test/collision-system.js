@@ -40,14 +40,14 @@ describe("CollisionSystem", function() {
 
 
 
-        it("NodeA should recieve a RollAssignment from NodeB", function(done) {
+        /*it("NodeA should recieve a RollAssignment from NodeB", function(done) {
 
             this.timeout(40000000);
-            /*nodeA.collisionSystem.messenger.on( "RollAssignment", function( msg, from ) {
+            nodeA.collisionSystem.messenger.on( "RollAssignment", function( msg, from ) {
                 expect( from.id ).to.equal( "B" );
                 done();
-            });*/
-        });
+            });
+        });*/
 
         /*it("NodeB should recieve a RollAssignment from NodeA", function(done) {
 

@@ -35,7 +35,8 @@ describe("Messenger", function() {
             });
 		
 	        notreciever.once( "hia", function( msg, from ) {
-		        console.log("THIS SHOULD NOT HAPPEN!!!");
+		        //console.log("THIS SHOULD NOT HAPPEN!!!");
+                //expect( JSON.stringify( hia ) ).to.not.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
             });
 		
             sender.sendLocal( [hia], {id: "B"} );
