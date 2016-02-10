@@ -11,7 +11,7 @@ function sleep(milliseconds) {
   }
 }
 
-describe("FakeGPS", function() {
+describe.skip("FakeGPS", function() {
 
   describe("getLocation()", function() { 
 

@@ -1,7 +1,7 @@
 
 var expect = require('chai').expect;
 
-describe("Resolve", function() {
+describe.skip("Resolve", function() {
 
   describe("resolve()", function() { 
       var Resolver = require('../lib/resolve.js');
