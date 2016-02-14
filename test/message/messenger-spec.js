@@ -31,7 +31,7 @@ describe("Messenger", function() {
         it("Sender should send evelope and reciever should recieve it", function(done) {
             
             reciever.once( "hia", function( msg, from ) { 
-                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' ); 
+                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","ack":false,"lat":2,"lon":3,"alt":4}' ); 
                 done();
             });
 
@@ -41,11 +41,11 @@ describe("Messenger", function() {
         it("A should send evelope and B should revieve it", function(done) {
 
             reciever.once( "hia", function( msg, from ) {
-                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
+                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","ack":false,"lat":2,"lon":3,"alt":4}' );
             });
 		
 	        notreciever.once( "hia", function( msg, from ) {
-                expect( JSON.stringify( msg ) ).to.not.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
+                expect( JSON.stringify( msg ) ).to.not.equal( '{"type":"hia","ack":false,lat":2,"lon":3,"alt":4}' );
             });
 		
             sender.sendLocal( [hia], {id: "B"} );
@@ -56,15 +56,15 @@ describe("Messenger", function() {
         it("A should send evelope and both B and C should revieve it", function(done) {
 
             reciever.once( "hia", function( msg, from ) {
-                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
+                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","ack":false,"lat":2,"lon":3,"alt":4}' );
             });
 		
 	        notreciever.once( "hia", function( msg, from ) {
-                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
+                expect( JSON.stringify( msg ) ).to.equal( '{"type":"hia","ack":false,"lat":2,"lon":3,"alt":4}' );
             });
 
             sender.once( "hia", function( msg, from ) {
-                expect( JSON.stringify( msg ) ).to.not.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' );
+                expect( JSON.stringify( msg ) ).to.not.equal( '{"type":"hia","ack":false,"lat":2,"lon":3,"alt":4}' );
             });
 		
             sender.sendLocal( [hia] );

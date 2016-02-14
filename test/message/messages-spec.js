@@ -13,14 +13,14 @@ describe("Message", function() {
         });
 
         it("should eqal the test message", function(done) {
-            expect( JSON.stringify( hia) ).to.equal( '{"type":"hia","lat":2,"lon":3,"alt":4}' ); 
+            expect( JSON.stringify( hia) ).to.equal( '{"type":"hia","ack":false,"lat":2,"lon":3,"alt":4}' ); 
             done(); 
         });
 
         it("should throw an error due to incorrect type", function(done) {
 
             var f = function() { 
-                Messages.HIA.validate( JSON.parse('{ "type": "hia", "lat": 7, "lon": 6, "alt": "hi" }') ); 
+                Messages.HIA.validate( JSON.parse('{ "type": "hia", "ack": false, "lat": 7, "lon": 6, "alt": "hi" }') ); 
             }
             expect( f ).to.throw(TypeError);
             done(); 
