@@ -4,16 +4,18 @@ var expect = require('chai').expect;
 // Convinience function for sleeping
 function sleep(milliseconds) {
   var start = new Date().getTime();
+  //console.log("START:",start);
   for (var i = 0; i < 1e7; i++) {
     if ((new Date().getTime() - start) > milliseconds){
       break;
     }
   }
+ //console.log("DONEAT:", new Date().getTime() - start);
 }
 
-describe.skip("FakeGPS", function() {
+describe("FakeGPS", function() {
 
-  describe("getLocation()", function() { 
+  describe.skip("getLocation()", function() { 
 
     var Parser = require('../lib/node-by-line.js'),
         FakeGPS = require('../lib/fake-gps.js');
@@ -139,6 +141,42 @@ describe.skip("FakeGPS", function() {
     });
 
   });
+
+  describe("emit location", function() { 
+
+    var Parser = require('../lib/node-by-line.js'),
+        FakeGPS = require('../lib/fake-gps.js');
+    var fs = require('fs');
+    var file;
+
+    beforeEach( function() {
+        // Specify before logic here
+    });
+
+    
+    it("should emit the location every second by default", function(done) {
+        this.timeout(10000); 
+        file = fs.createReadStream("test/sample_input/double_trajectory.movements");
+        Parser.parse( file, function( plans ) {
+            // Make sure we parsed correctly 
+            expect(plans.length).to.equal(1);
+            // Get the plan out
+            var plan = plans[0];
+            // Create a new fake gps
+            var gps = new FakeGPS( plan );
+ 	    gps.on( "location", function( loc ){ 
+            	console.log("\t%s", JSON.stringify( loc ) );
+ 	    });
+	    setTimeout(function() {
+            	done();
+	    }, 6000);
+        });
+    });
+
+  });
+
 });
+
+
 
 
