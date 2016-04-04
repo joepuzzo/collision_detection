@@ -5,8 +5,6 @@ var DataNode  = require('./lib/data-node.js'),
 // Parse in a file with plans
 var Parser = require('./lib/node-by-line.js');
 var fs = require('fs');
-var file = fs.createReadStream("test/sample_input/sample_4n.movements");
-
 
 
 /*------------------------------Input--------------------------------*/
@@ -16,6 +14,7 @@ var config = {}
 var verbose = false;
 var speed = 1;
 var id;
+var fname;
 
 // Process the arguments 
 process.argv.forEach(function (val, index, array) {
@@ -31,28 +30,32 @@ process.argv.forEach(function (val, index, array) {
         case "-id":
             id = array[index+1];
             break;
+        case "-f": 
+        case "--file": 
+             fname = array[index+1];
         default: 
     }
 });
 
 // Validate arguments
-if( !id ) { 
-    console.log( "Usage node startup.js [--speed|-s] speed [-id] uid [--verbose|-v] ");
+if( !id || !fname ) { 
+    console.log( "Usage node startup.js [--speed|-s] speed [-id] uid [-f|--file] filename [--verbose|-v] ");
     return;
 }
 
+// Create file stream 
+var file = fs.createReadStream( fname );
 
+// Parse the file into plan
 Parser.parse( file, function( pls ) { 
   start( pls );
 });
-
 
 function start( plans ) { 
 
   //console.log( plans[0].toBonString() );
   var node = new DataNode( { id: id,
-                             gps: new FakeGPS( plans[0] )
+                             gps: new FakeGPS( plans[ id - 1 ] )
                            } );
-
 }
 
