@@ -168,6 +168,7 @@ describe("FakeGPS", function() {
             	console.log("\t%s", JSON.stringify( loc ) );
  	    });
 	    setTimeout(function() {
+                gps.cleanup();
             	done();
 	    }, 6000);
         });
