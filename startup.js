@@ -55,7 +55,7 @@ function start( plans ) {
 
   //console.log( plans[0].toBonString() );
   var node = new DataNode( { id: id,
-                             gps: new FakeGPS( plans[ id - 1 ] )
+                             gps: new FakeGPS( plans[ id - 1 ], 1, { id: id }  )
                            } );
 }
 
